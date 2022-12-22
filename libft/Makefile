@@ -6,7 +6,7 @@
 #    By: filipe <filipe@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/17 12:27:56 by fialexan          #+#    #+#              #
-#    Updated: 2022/12/22 17:24:21 by filipe           ###   ########.fr        #
+#    Updated: 2022/12/22 17:28:28 by filipe           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -80,4 +80,3 @@ fclean: clean
 re:
 	@make fclean
 	@make all
-

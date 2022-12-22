@@ -6,7 +6,7 @@
 #    By: filipe <filipe@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/22 16:37:55 by filipe            #+#    #+#              #
-#    Updated: 2022/12/22 17:10:35 by filipe           ###   ########.fr        #
+#    Updated: 2022/12/22 19:05:31 by filipe           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,11 +16,11 @@ LIBFT_DIRECTORY = ./libft/
 LIBFT_HEADERS = $(LIBFT_DIRECTORY)includes/
 LIBFT = $(LIBFT_DIRECTORY)libft.a
 
-HEADERS_LIST = 
+HEADERS_LIST = pipex.h
 HEADERS_DIRECTORY = ./incl/
 HEADERS = $(addprefix $(HEADERS_DIRECTORY), $(HEADERS_LIST))
 
-SOURCES_LIST = 
+SOURCES_LIST = pipex.c child_forks.c
 SOURCES_DIRECTORY = ./srcs/
 SOURCES = $(addprefix $(SOURCES_DIRECTORY), $(SOURCES_LIST))
 
