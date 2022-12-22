@@ -6,7 +6,7 @@
 /*   By: filipe <filipe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 17:34:42 by filipe            #+#    #+#             */
-/*   Updated: 2022/12/22 19:28:08 by filipe           ###   ########.fr       */
+/*   Updated: 2022/12/22 19:53:57 by filipe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 
 // Pipex
 
-void	pipex(int input_fd, int output_fd);
+void	pipex(int input_fd, int output_fd, char **command_1, char **command_2);
 
 // Child Forks
 

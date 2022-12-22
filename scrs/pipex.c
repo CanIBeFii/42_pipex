@@ -6,7 +6,7 @@
 /*   By: filipe <filipe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 17:43:03 by filipe            #+#    #+#             */
-/*   Updated: 2022/12/22 19:39:10 by filipe           ###   ########.fr       */
+/*   Updated: 2022/12/22 19:53:39 by filipe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,26 @@
 // linha 23 handle erro maybe
 int	main(int argc, char **argv)
 {
-	int	input_fd;
-	int	output_fd;
+	int		input_fd;
+	int		output_fd;
+	char	**command_1;
+	char	**command_2;
 	
 	input_fd = open(argv[1], O_RDONLY);
 	output_fd = open(argv[4], O_CREAT | O_RDWR | O_TRUNC, 0644);
 	if (input_fd < 0 || output_fd < 0)
-		return (-1) 
+		return (-1);
+	command_1 = ft_split(argv[2], ' ');
+	if (command_1 == NULL)
+		return (-1);
+	command_2 = ft_split(argv[3], ' ');
+	if (command_2 == NULL)
+		return (-1);
+	
 	return (0);
 }
 
-void	pipex(int input_fd, int output_fd)
+void	pipex(int input_fd, int output_fd, char **command_1, char **command_2)
 {
 	int		pipex_pipe[2];
 	int		pipe_status;
