@@ -6,7 +6,7 @@
 #    By: filipe <filipe@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/17 12:27:56 by fialexan          #+#    #+#              #
-#    Updated: 2022/12/22 16:59:04 by filipe           ###   ########.fr        #
+#    Updated: 2022/12/22 17:24:21 by filipe           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ FLAGS = -Wall -Werror -Wextra -c -g
 INCLUDES = -I $(HEADERS_DIRECTORY)
 
 HEADERS_LIST = libft.h
-HEADERS_DIRECTORY = includes/
+HEADERS_DIRECTORY = incl/
 HEADERS = $(addprefix $(HEADERS_DIRECTORY), $(HEADERS_LIST))
 
 SOURCES_LIST =ft_isalpha.c ft_isdigit.c ft_isascii.c ft_isalnum.c ft_isprint.c ft_bzero.c \
@@ -32,10 +32,10 @@ SOURCES_LIST =ft_isalpha.c ft_isdigit.c ft_isascii.c ft_isalnum.c ft_isprint.c f
 		format_i.c format_p.c format_s.c format_u.c format_x_big.c \
 		format_x_small.c ft_printf.c ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c \
 		ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c
-SOURCES_DIRECTORY = sources/
+SOURCES_DIRECTORY = srcs/
 SOURCES = $(addprefix $(SOURCES_DIRECTORY), $(SOURCES_LIST))
 
-OBJECTS_DIRECTORY = objects/
+OBJECTS_DIRECTORY = objs/
 OBJECTS_LIST = $(patsubst %.c, %.o, $(SOURCES_LIST))
 OBJECTS = $(addprefix $(OBJECTS_DIRECTORY), $(OBJECTS_LIST))
 
@@ -43,6 +43,7 @@ OBJECTS = $(addprefix $(OBJECTS_DIRECTORY), $(OBJECTS_LIST))
 
 GREEN = \033[0;32m
 RED = \033[0;31m
+CYAN = \033[0;36m
 RESET = \033[0m
 
 # RULES
@@ -52,28 +53,31 @@ all: $(NAME)
 $(NAME): $(OBJECTS_DIRECTORY) $(OBJECTS)
 	@ar rc $(NAME) $(OBJECTS)
 	@ranlib $(NAME)
-	@echo "\n$(NAME): $(GREEN) objects files were created$(RESET)"
-	@echo "$(NAME): $(GREEN)$(NAME) was created$(RESET)"
+	@echo "\n$(CYAN)$(NAME):$(RESET) $(GREEN)objects$(RESET) files were created"
+	@echo "$(CYAN)$(NAME):$(RESET) $(GREEN)$(NAME)$(RESET) was created"
 	
 $(OBJECTS_DIRECTORY):
+	@echo "Going to compile the files, let's hope nothing breaks:"
 	@mkdir -p $(OBJECTS_DIRECTORY)
-	@echo "$(NAME): $(GREEN)$(OBJECTS_DIRECTORY) was created$(RESET)"
+	@echo "	$(CYAN)$(NAME):$(RESET) $(GREEN)$(OBJECTS_DIRECTORY)$(RESET) was created"
+	@echo "Each point shows the amount of disappointment that my parents have of me:"
 	
 $(OBJECTS_DIRECTORY)%.o: $(SOURCES_DIRECTORY)%.c $(HEADERS)
 	@$(CC) $(FLAGS) $(INCLUDES) $< -o $@
 	@echo "$(GREEN).$(RESET)\c"
 
 clean:
+	@echo "Cleaning all the random files that you think that work:"
 	@rm -rf $(OBJECTS_DIRECTORY)
-	@echo "$(NAME): $(RED)$(OBJECTS_DIRECTORY) was deleted$(RESET)"
-	@echo "$(NAME): $(RED) object files were annihilated$(RESET)"
+	@echo "	$(CYAN)$(NAME):$(RESET) $(RED)$(OBJECTS_DIRECTORY)$(RESET) was deleted"
+	@echo "	$(CYAN)$(NAME):$(RESET) $(RED)object files$(RESET) were annihilated"
 
 fclean: clean
+	@echo "Deep cleaning all the trash you created:"
 	@rm -f $(NAME)
-	@echo "$(NAME): $(RED)$(NAME) was erased from the world surface$(RESET)"
+	@echo "	$(CYAN)$(NAME):$(RESET) $(RED)$(NAME)$(RESET) was erased from the world surface"
 
 re:
 	@make fclean
 	@make all
-
 
