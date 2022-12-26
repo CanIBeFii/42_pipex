@@ -6,11 +6,31 @@
 /*   By: fialexan <fialexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 19:05:42 by filipe            #+#    #+#             */
-/*   Updated: 2022/12/26 18:08:11 by fialexan         ###   ########.fr       */
+/*   Updated: 2022/12/26 18:30:43 by fialexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
+
+char	*get_command(char **paths, char *command_name)
+{
+	int		index;
+	char	*temporary;
+	char	*command;
+
+	index = 0;
+	while (paths[index] != NULL)
+	{
+		temporary = ft_strjoin(paths[index], "/");
+		command = ft_strjoin(temporary, command_name);
+		free(temporary);
+		if (access(command, F_OK) == 0)
+			return (command);
+		free(command);
+		index++;
+	}
+	return (NULL);
+}
 
 void	child_1(t_pipex pipex, char **envp)
 {

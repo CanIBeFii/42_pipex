@@ -6,7 +6,7 @@
 /*   By: fialexan <fialexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 17:34:42 by filipe            #+#    #+#             */
-/*   Updated: 2022/12/26 18:08:23 by fialexan         ###   ########.fr       */
+/*   Updated: 2022/12/26 18:29:04 by fialexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,9 @@ typedef struct s_pipex
 
 // Pipex
 
-char	**get_command_paths(char **envp);
+void	pipex_function(t_pipex pipex, char **argv, char **envp);
 
-//void	pipex(int input_fd, int output_fd, char **command_1, char **command_2);
+char	**get_command_paths(char **envp);
 
 // Child Forks
 
