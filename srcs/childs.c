@@ -1,35 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   child_forks.c                                      :+:      :+:    :+:   */
+/*   childs.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: filipe <filipe@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fialexan <fialexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 19:05:42 by filipe            #+#    #+#             */
-/*   Updated: 2022/12/22 19:44:09 by filipe           ###   ########.fr       */
+/*   Updated: 2022/12/26 18:08:11 by fialexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	child_1_fork(int input_fd, int *pipe)
+void	child_1(t_pipex pipex, char **envp)
 {
-	if (dup2(input_fd, STDIN_FILENO) == DUP2_ERROR)
+	if (dup2(pipex.infile_file_descriptor, STDIN_FILENO) == DUP2_ERROR)
 		perror("Dup2 - child1 input");
-	if (dup2(pipe[1], STDOUT_FILENO) == DUP2_ERROR)
+	if (dup2(pipex.pipe[1], STDOUT_FILENO) == DUP2_ERROR)
 		perror("Dup2 - child1 output");
-	close(pipe[0]);
-	close(input_fd);
+	close(pipex.pipe[0]);
+	close(pipex.infile_file_descriptor);
 	exit(EXIT_SUCCESS);
 }
 
-void	child_2_fork(int output_fd, int *pipe)
+void	child_2(t_pipex pipex, char **envp)
 {
-	if (dup2(pipe[0], STDIN_FILENO) == DUP2_ERROR)
+	if (dup2(pipex.pipe[0], STDIN_FILENO) == DUP2_ERROR)
 		perror("Dup2 - child1 input");
-	if (dup2(output_fd, STDOUT_FILENO) == DUP2_ERROR)
+	if (dup2(pipex.outfile_file_descriptor, STDOUT_FILENO) == DUP2_ERROR)
 		perror("Dup2 - child1 output");
-	close(pipe[1]);
-	close(output_fd);
+	close(pipex.pipe[1]);
+	close(pipex.outfile_file_descriptor);
 	exit(EXIT_SUCCESS);
 }

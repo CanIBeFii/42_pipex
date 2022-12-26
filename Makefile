@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: filipe <filipe@student.42.fr>              +#+  +:+       +#+         #
+#    By: fialexan <fialexan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/22 16:37:55 by filipe            #+#    #+#              #
-#    Updated: 2022/12/22 19:05:31 by filipe           ###   ########.fr        #
+#    Updated: 2022/12/26 17:46:34 by fialexan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ HEADERS_LIST = pipex.h
 HEADERS_DIRECTORY = ./incl/
 HEADERS = $(addprefix $(HEADERS_DIRECTORY), $(HEADERS_LIST))
 
-SOURCES_LIST = pipex.c child_forks.c
+SOURCES_LIST = pipex.c childs.c error_management.c
 SOURCES_DIRECTORY = ./srcs/
 SOURCES = $(addprefix $(SOURCES_DIRECTORY), $(SOURCES_LIST))
 
@@ -29,7 +29,7 @@ OBJECTS_DIRECTORY = objs/
 OBJECTS = $(addprefix $(OBJECTS_DIRECTORY), $(OBJECTS_LIST))
 
 CC = gcc
-FLAGS = -Wall -Werror -Wextra -g3
+FLAGS = -Wall -Werror -Wextra -g
 LIBRARIES = -L$(LIBFT_DIRECTORY) -lft 
 INCLUDES = -I $(HEADERS_DIRECTORY) -I $(LIBFT_HEADERS)
 
@@ -43,7 +43,7 @@ RESET = \033[0m
 
 all: $(NAME)
 
-$(NAME): $(LIBFT) $(OBJECTS_DIRECTORY) $(OBJECTS)
+$(NAME): $(OBJECTS_DIRECTORY) $(OBJECTS) $(LIBFT)
 	@echo "\n$(GREEN)Starting compile$(RESET)"
 	@$(CC) $(FLAGS) $(INCLUDES) $(OBJECTS) $(LIBRARIES) -o $(NAME)
 	@echo "$(CYAN)$(NAME):$(RESET) $(GREEN)object files were created$(RESET)"
@@ -51,7 +51,7 @@ $(NAME): $(LIBFT) $(OBJECTS_DIRECTORY) $(OBJECTS)
 
 $(OBJECTS_DIRECTORY):
 	@mkdir -p $(OBJECTS_DIRECTORY)
-	@echo "$(CYAN)$(NAME):$(RESET) $(GREEN)$(OBJECTS_DIRECTORY) was created$(RESET)"
+	@echo "$(CYAN)$(NAME):$(RESET) $(GREEN)$(OBJECTS_DIRECTORY)$(RESET) was created$(RESET)"
 
 $(OBJECTS_DIRECTORY)%.o : $(SOURCES_DIRECTORY)%.c $(HEADERS) 
 	@$(CC) $(FLAGS) -c $(INCLUDES) $< -o $@

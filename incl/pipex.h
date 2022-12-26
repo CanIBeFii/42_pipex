@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: filipe <filipe@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fialexan <fialexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 17:34:42 by filipe            #+#    #+#             */
-/*   Updated: 2022/12/22 19:53:57 by filipe           ###   ########.fr       */
+/*   Updated: 2022/12/26 18:08:23 by fialexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PIPEX_H
 # define PIPEX_H 
 
-# include "libft.h"
+# include "../libft/incl/libft.h"
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
@@ -25,15 +25,41 @@
 
 # define PIPE_ERROR -1
 # define DUP2_ERROR -1
+# define ARGC_ERROR "Wrong number of arguments"
+# define INFILE_ERROR "Infile"
+# define OUTFILE_ERROR "Output"
+# define PIPE "Pipe"
+
+// Type
+
+typedef struct s_pipex
+{
+	pid_t	child_1;
+	pid_t	child_2;
+	int		pipe[2];
+	int		infile_file_descriptor;
+	int		outfile_file_descriptor;
+	char	**command_paths;
+	char	**command_1_arguments;
+	char	**command_2_arguments;
+}	t_pipex;
 
 // Pipex
 
-void	pipex(int input_fd, int output_fd, char **command_1, char **command_2);
+char	**get_command_paths(char **envp);
+
+//void	pipex(int input_fd, int output_fd, char **command_1, char **command_2);
 
 // Child Forks
 
-void	child_1_fork(int input_fd, int *pipe);
+void	child_1(t_pipex pipex, char **envp);
 
-void	child_2_fork(int output_fd, int *pipe);
+void	child_2(t_pipex pipex, char **envp);
+
+// Error Management
+
+int		error_found(char *error);
+
+void	print_error(char *error);
 
 #endif
