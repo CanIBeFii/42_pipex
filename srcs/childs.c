@@ -6,7 +6,7 @@
 /*   By: fialexan <fialexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 19:05:42 by filipe            #+#    #+#             */
-/*   Updated: 2022/12/27 12:09:54 by fialexan         ###   ########.fr       */
+/*   Updated: 2022/12/27 12:35:20 by fialexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ void	child_1(t_pipex pipex, char **envp)
 	free_child(&pipex);
 	free(command);
 	exit(EXIT_SUCCESS);
-
 }
 
 void	child_2(t_pipex pipex, char **envp)
