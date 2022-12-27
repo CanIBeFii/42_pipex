@@ -6,7 +6,7 @@
 /*   By: fialexan <fialexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 17:43:03 by filipe            #+#    #+#             */
-/*   Updated: 2022/12/26 18:30:09 by fialexan         ###   ########.fr       */
+/*   Updated: 2022/12/27 11:43:19 by fialexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ void	pipex_function(t_pipex pipex, char **argv, char **envp)
 	close(pipex.pipe[1]);
 	waitpid(pipex.child_1, NULL, 0);
 	waitpid(pipex.child_2, NULL, 0);
+	free_parent(&pipex);
 }
 
 char	**get_command_paths(char **envp)

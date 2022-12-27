@@ -6,7 +6,7 @@
 /*   By: fialexan <fialexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 17:34:42 by filipe            #+#    #+#             */
-/*   Updated: 2022/12/26 18:29:04 by fialexan         ###   ########.fr       */
+/*   Updated: 2022/12/27 11:48:42 by fialexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # define PIPE_ERROR -1
 # define DUP2_ERROR -1
 # define ARGC_ERROR "Wrong number of arguments"
+# define COMMAND_ERROR "No command found"
 # define INFILE_ERROR "Infile"
 # define OUTFILE_ERROR "Output"
 # define PIPE "Pipe"
@@ -61,5 +62,11 @@ void	child_2(t_pipex pipex, char **envp);
 int		error_found(char *error);
 
 void	print_error(char *error);
+
+// Free
+
+void	free_child(t_pipex *pipex);
+
+void	free_parent(t_pipex *pipex);
 
 #endif
