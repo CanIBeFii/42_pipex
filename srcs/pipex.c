@@ -6,7 +6,7 @@
 /*   By: fialexan <fialexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 17:43:03 by filipe            #+#    #+#             */
-/*   Updated: 2022/12/27 12:07:51 by fialexan         ###   ########.fr       */
+/*   Updated: 2022/12/30 15:12:06 by fialexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ int	main(int argc, char **argv, char **envp)
 void	pipex_function(t_pipex pipex, char **argv, char **envp)
 {
 	pipex.command_paths = get_command_paths(envp);
-	pipex.command_1_arguments = ft_split(argv[3], ' ');
-	pipex.command_2_arguments = ft_split(argv[2], ' ');
+	pipex.command_1_arguments = ft_split(argv[2], ' ');
+	pipex.command_2_arguments = ft_split(argv[3], ' ');
 	pipex.child_1 = fork();
 	if (pipex.child_1 == 0)
 		child_1(pipex, envp);
